@@ -65,7 +65,7 @@ Open Scope f32_scope.
       match rounds with
       | 0 => None
       | S n' => match cost_vector w with 
-                | None => Some w (*change this*)
+                | None => Some w
                 | Some cv => run_winnow n' (weight_vector w cv)
                 end
       end.
@@ -75,5 +75,5 @@ Open Scope f32_scope.
 End Winnow.
 
 Extraction Language Haskell.
-Extraction "hs_winnow/Winnow.hs" cost_vector weight_vector.
+Extraction "hs_winnow/Winnow.hs" cost_vector weight_vector run_winnow.
 
