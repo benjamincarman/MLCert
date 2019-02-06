@@ -54,3 +54,7 @@ Open Scope f32_scope.
   End CostVector.
 
 End Winnow.
+
+Extraction Language Haskell.
+Extraction "hs_winnow/Winnow.hs" cost_vector weight_vector.
+
