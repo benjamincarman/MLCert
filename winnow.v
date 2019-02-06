@@ -53,6 +53,25 @@ Open Scope f32_scope.
       end.
   End CostVector.
 
+  Section RunWinnow.
+    (*Define maximum number of rounds from theory*)
+    (* ceil((4 * rho * rho * ln(n))/(epsilon * epsilon)). *) (*not use nat, overflow?*)
+    Definition rounds: nat := 1000. 
+    
+    (*maybe divide 1 by n to normalize initially*)
+    (*Definition w := f32_init n f32_1.*)
+
+    Fixpoint run_winnow (rounds: nat) (w: float32_arr n): option (float32_arr n) :=
+      match rounds with
+      | 0 => None
+      | S n' => match cost_vector w with 
+                | None => Some w (*change this*)
+                | Some cv => run_winnow n' (weight_vector w cv)
+                end
+      end.
+
+  End RunWinnow.
+
 End Winnow.
 
 Extraction Language Haskell.
